@@ -1,8 +1,48 @@
-// Helper: randomly pick one element from a list
+/**
+ * Picks a random element from a given list.
+ * Random selection is uniform, each element has equal probability.
+ * @param {Array} list - Array of items to choose from
+ * @returns {*} Randomly selected element from the list
+ */
 function randomPick(list) {
   const index = Math.floor(Math.random() * list.length);
   return list[index];
 }
+
+/**
+ * Randomly assigns gender with equal probability.
+ * @returns {string} "male" or "female"
+ */
+function assignGender() {
+  return Math.random() < 0.5 ? "male" : "female";
+}
+
+/**
+ * Generates a random birthdate given min and max age.
+ * @param {number} minAge - Minimum age (inclusive)
+ * @param {number} maxAge - Maximum age (exclusive)
+ * @param {Date} today - Reference date (usually current date)
+ * @returns {string} Birthdate as ISO string
+ */
+function generateBirthdate(minAge, maxAge, today) {
+  const earliest = new Date(today);
+  earliest.setFullYear(earliest.getFullYear() - maxAge);
+  const latest = new Date(today);
+  latest.setFullYear(latest.getFullYear() - minAge);
+
+  const birthTimestamp = earliest.getTime() + Math.random() * (latest.getTime() - earliest.getTime());
+  return new Date(birthTimestamp).toISOString();
+}
+
+/**
+ * Randomly picks a workload from the set [10,20,30,40].
+ * @param {Array<number>} workloads - List of allowed workload values
+ * @returns {number} Selected workload
+ */
+function assignWorkload(workloads) {
+  return randomPick(workloads);
+}
+
 
 /**
  * The main function which calls the application. 
